@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adam Petr√°k ‚Äď Marketing, co m√° koule</title>
+  <meta name="description" content="Adam Petr√°k ‚Äď marketingov√Ĺ specialista s 7 lety zkuŇ°enost√≠. Pom√°h√°m firm√°m rŇĮst pŇôes v√Ĺkonnostn√≠ marketing, brand a strategii. V√Ĺsledky mluv√≠ za vŇ°e." />
+  <link rel="icon" href="https://adampetrak.cz/wp-content/uploads/2025/07/ap-logo-png.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #080808;
+      --dark:    #111111;
+      --card:    #181818;
+      --border:  #2a2a2a;
+      --red:     #E8360C;
+      --red-d:   #bf2a09;
+      --white:   #F5F5F0;
+      --muted:   #888888;
+      --ff-head: 'Syne', sans-serif;
+      --ff-body: 'Inter', sans-serif;
+      --ease:    cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ NAV ‚ĒÄ‚ĒÄ‚ĒÄ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s var(--ease);
+    }
+    nav.scrolled { padding: .8rem 4rem; }
+
+    .nav-logo img { height: 48px; filter: invert(1); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--ff-body); font-size: .85rem; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--red); color: var(--white);
+      font-family: var(--ff-body); font-size: .8rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .7rem 1.8rem; border: none; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: background .2s var(--ease), transform .15s;
+    }
+    .nav-cta:hover { background: var(--red-d); transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: .3s; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ HERO ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+    }
+    .hero-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 70%, var(--black));
+    }
+
+    .hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 5rem 5rem 4rem;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 2rem; height: 2px; background: var(--red);
+    }
+
+    .hero-title {
+      font-family: var(--ff-head);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); font-weight: 300;
+      max-width: 420px; margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-sub strong { color: var(--white); font-weight: 500; }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .btn-primary {
+      background: var(--red); color: var(--white);
+      font-family: var(--ff-body); font-size: .85rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 1rem 2.2rem; text-decoration: none;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-d); transform: translateY(-2px); }
+
+    .btn-secondary {
+      border: 1px solid var(--border); color: var(--white);
+      font-family: var(--ff-body); font-size: .85rem; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 1rem 2.2rem; text-decoration: none;
+      transition: border-color .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--white); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: var(--ff-head); font-size: 1.9rem; font-weight: 800;
+      color: var(--white); line-height: 1;
+    }
+    .stat-num span { color: var(--red); }
+    .stat-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .3rem; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ SECTION BASE ‚ĒÄ‚ĒÄ‚ĒÄ */
+    section { padding: 6rem 4rem; }
+    .section-tag {
+      font-size: .72rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1rem; display: block;
+    }
+    .section-title {
+      font-family: var(--ff-head); font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .section-desc {
+      color: var(--muted); font-size: 1rem; max-width: 540px; line-height: 1.75;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ LOGO BAR ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #logos {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .logos-wrap {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .logos-label { font-size: .7rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+    .logos-items { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+    .logos-items img {
+      height: 28px; filter: invert(1) brightness(.5);
+      transition: filter .2s;
+    }
+    .logos-items img:hover { filter: invert(1) brightness(1); }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ V√ĚSLEDKY ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #vysledky { background: var(--dark); }
+    .vysledky-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px; background: var(--border);
+      margin-top: 3.5rem;
+    }
+    .vysledek-item {
+      background: var(--dark); padding: 2.5rem 2rem;
+      text-align: center; transition: background .2s;
+    }
+    .vysledek-item:hover { background: var(--card); }
+    .vysledek-num {
+      font-family: var(--ff-head); font-size: 2.8rem; font-weight: 800;
+      color: var(--red); line-height: 1; margin-bottom: .5rem;
+    }
+    .vysledek-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ SLUŇĹBY ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #sluzby {}
+    .sluzby-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: end; margin-bottom: 3.5rem;
+    }
+    .sluzby-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--border);
+    }
+    .sluzba-card {
+      background: var(--black); padding: 2.5rem;
+      transition: background .25s var(--ease);
+      position: relative; overflow: hidden;
+    }
+    .sluzba-card::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--red);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform .3s var(--ease);
+    }
+    .sluzba-card:hover { background: var(--card); }
+    .sluzba-card:hover::before { transform: scaleY(1); }
+    .sluzba-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .sluzba-title {
+      font-family: var(--ff-head); font-size: 1.25rem; font-weight: 700;
+      margin-bottom: .75rem;
+    }
+    .sluzba-desc { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .sluzba-list { list-style: none; margin-top: 1rem; }
+    .sluzba-list li {
+      font-size: .85rem; color: var(--muted); padding: .25rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .sluzba-list li::before { content: '‚Üí'; color: var(--red); font-size: .8rem; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ CASE STUDIES ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #cases { background: var(--dark); }
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1px; background: var(--border);
+      margin-top: 3.5rem;
+    }
+    .case-card {
+      background: var(--dark); padding: 2.5rem;
+      transition: background .2s;
+    }
+    .case-card:hover { background: var(--card); }
+    .case-sector {
+      font-size: .7rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--red); margin-bottom: .75rem;
+    }
+    .case-name {
+      font-family: var(--ff-head); font-size: 1.4rem; font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .case-metrics { display: flex; flex-direction: column; gap: .5rem; }
+    .case-metric {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .6rem 0; border-bottom: 1px solid var(--border);
+      font-size: .85rem;
+    }
+    .case-metric-label { color: var(--muted); }
+    .case-metric-val { font-weight: 600; color: var(--white); }
+    .case-metric-val.green { color: #4ade80; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ O MNńö ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #omne {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .omne-photo {
+      position: relative; overflow: hidden; min-height: 600px;
+    }
+    .omne-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+    }
+    .omne-content {
+      background: var(--dark); padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .omne-points { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .omne-point {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .omne-num {
+      font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800;
+      color: var(--red); line-height: 1; min-width: 3rem;
+    }
+    .omne-text { font-size: .95rem; color: var(--muted); line-height: 1.65; }
+    .omne-text strong { color: var(--white); display: block; margin-bottom: .2rem; font-weight: 600; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ PROńĆ J√Ā ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #proc { }
+    .proc-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border); margin-top: 3.5rem;
+    }
+    .proc-item {
+      background: var(--black); padding: 2.5rem;
+    }
+    .proc-title {
+      font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700;
+      margin-bottom: .6rem; display: flex; align-items: center; gap: .75rem;
+    }
+    .proc-title span { color: var(--red); font-size: 1.4rem; }
+    .proc-desc { color: var(--muted); font-size: .9rem; line-height: 1.7; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ CTA BANNER ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #cta-banner {
+      background: var(--red); padding: 5rem 4rem;
+      text-align: center;
+    }
+    .cta-banner-title {
+      font-family: var(--ff-head); font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800; margin-bottom: 1rem;
+    }
+    .cta-banner-sub { color: rgba(255,255,255,.75); font-size: 1.05rem; margin-bottom: 2rem; }
+    .btn-white {
+      background: var(--white); color: var(--black);
+      font-family: var(--ff-body); font-size: .85rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 1.1rem 2.8rem; text-decoration: none;
+      display: inline-block; transition: transform .15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ RECENZE ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #recenze { background: var(--dark); }
+    .recenze-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px; background: var(--border); margin-top: 3.5rem;
+    }
+    .recenze-card {
+      background: var(--dark); padding: 2.5rem; position: relative;
+    }
+    .quote {
+      font-size: 3rem; color: var(--red); font-family: serif;
+      line-height: .8; margin-bottom: 1rem; display: block;
+    }
+    .recenze-text {
+      font-size: .95rem; color: var(--muted); line-height: 1.75;
+      margin-bottom: 1.5rem; font-style: italic;
+    }
+    .recenze-author { font-weight: 600; font-size: .9rem; }
+    .recenze-role { font-size: .78rem; color: var(--muted); }
+    .stars { color: #f59e0b; margin-bottom: 1rem; font-size: .9rem; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ KONTAKT ‚ĒÄ‚ĒÄ‚ĒÄ */
+    #kontakt {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .kontakt-info {
+      background: var(--dark); padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .kontakt-info .section-desc { margin-bottom: 3rem; }
+    .kontakt-detail {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .kontakt-item {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .kontakt-icon {
+      width: 2.5rem; height: 2.5rem; background: var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .kontakt-item-text { font-size: .9rem; color: var(--muted); }
+    .kontakt-item-text a { color: var(--white); text-decoration: none; }
+    .kontakt-item-text a:hover { color: var(--red); }
+
+    .kontakt-form-wrap {
+      background: var(--black); padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .form-title {
+      font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800;
+      margin-bottom: .5rem;
+    }
+    .form-sub { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-group label {
+      font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--ff-body);
+      font-size: .95rem; padding: .9rem 1rem;
+      outline: none; width: 100%;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+    .form-group select option { background: var(--card); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      background: var(--red); color: var(--white); border: none;
+      font-family: var(--ff-body); font-size: .85rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 1.1rem 2rem; cursor: pointer;
+      transition: background .2s, transform .15s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--red-d); transform: translateY(-1px); }
+
+    .form-note { font-size: .75rem; color: var(--muted); margin-top: .25rem; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ FOOTER ‚ĒÄ‚ĒÄ‚ĒÄ */
+    footer {
+      background: var(--dark); padding: 2.5rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo img { height: 36px; filter: invert(1) brightness(.6); }
+    .footer-copy { font-size: .78rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: .78rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ ANIMATIONS ‚ĒÄ‚ĒÄ‚ĒÄ */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ‚ĒÄ‚ĒÄ‚ĒÄ RESPONSIVE ‚ĒÄ‚ĒÄ‚ĒÄ */
+    @media (max-width: 1024px) {
+      nav { padding: 1rem 2rem; }
+      nav.scrolled { padding: .8rem 2rem; }
+      section { padding: 5rem 2rem; }
+      #logos { padding: 2rem; }
+      .sluzby-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-photo { height: 60vh; }
+      .hero-photo::after { background: linear-gradient(to top, var(--black) 20%, transparent); }
+      .hero-content { padding: 2.5rem 1.5rem 3rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .sluzby-grid { grid-template-columns: 1fr; }
+      #omne { grid-template-columns: 1fr; }
+      .omne-photo { min-height: 350px; }
+      .omne-content { padding: 3rem 2rem; }
+      #kontakt { grid-template-columns: 1fr; }
+      .kontakt-info { padding: 3rem 2rem; }
+      .kontakt-form-wrap { padding: 3rem 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .proc-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .cases-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ NAV ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <img src="https://adampetrak.cz/wp-content/uploads/2025/07/ap-logo-png.png" alt="Adam Petr√°k" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sluzby">SluŇĺby</a></li>
+    <li><a href="#cases">V√Ĺsledky</a></li>
+    <li><a href="#omne">O mnńõ</a></li>
+    <li><a href="#recenze">Recenze</a></li>
+  </ul>
+  <a class="nav-cta" href="#kontakt">PojńŹme se potkat</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ HERO ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="hero">
+  <div class="hero-photo">
+    <img src="https://adampetrak.cz/wp-content/uploads/2025/09/IMG_0110.jpeg" alt="Adam Petr√°k" loading="eager" />
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">Marketing specialista ¬∑ 7 let praxe</span>
+    <h1 class="hero-title">
+      Marketing,<br/>
+      <em>co m√°</em><br/>
+      koule.
+    </h1>
+    <p class="hero-sub">
+      Pom√°h√°m firm√°m rŇĮst pŇôes <strong>v√Ĺkonnostn√≠ marketing</strong>, brand
+      a strategii. Nejen pl√°nuju ‚ÄĒ <strong>dńõl√°m</strong>. Za 7 let jsem
+      zachr√°nil a posunul des√≠tky firem.
+    </p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-primary">Chci spolupracovat</a>
+      <a href="#cases" class="btn-secondary">Moje v√Ĺsledky</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num"><span class="counter" data-target="7">0</span>+</div>
+        <div class="stat-label">Let zkuŇ°enost√≠</div>
+      </div>
+      <div>
+        <div class="stat-num"><span class="counter" data-target="50">0</span>+</div>
+        <div class="stat-label">Firem zachr√°nńõno</div>
+      </div>
+      <div>
+        <div class="stat-num"><span class="counter" data-target="2833">0</span>%</div>
+        <div class="stat-label">Max. ROAS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ LOGO BAR ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<div id="logos">
+  <div class="logos-wrap">
+    <span class="logos-label">Certifikovan√Ĺ pro</span>
+    <div class="logos-items">
+      <img src="https://adampetrak.cz/wp-content/uploads/2025/07/Meta_Platforms_Inc._logo-768x155.png" alt="Meta" />
+      <img src="https://adampetrak.cz/wp-content/uploads/2025/07/guide-google-ads-768x242.png" alt="Google Ads" style="height:22px;" />
+      <img src="https://adampetrak.cz/wp-content/uploads/2025/07/Snimek-obrazovky-2025-07-25-v-14.07.25.png" alt="Certifik√°t" style="height:32px;" />
+    </div>
+  </div>
+</div>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ V√ĚSLEDKY ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="vysledky">
+  <div class="container">
+    <span class="section-tag fade-up">ńĆ√≠sla nekecaj√≠</span>
+    <h2 class="section-title fade-up">V√Ĺsledky, kter√© mluv√≠ za vŇ°e</h2>
+    <p class="section-desc fade-up">Konkr√©tn√≠ ńć√≠sla z re√°ln√Ĺch kampan√≠. ŇĹ√°dn√© odhady, Ňĺ√°dn√© bullshity.</p>
+    <div class="vysledky-grid fade-up">
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="9">0</span>M+ Kńć</div>
+        <div class="vysledek-label">Vygenerovan√Ĺ obrat e-shop</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="1129">0</span>K+ ‚ā¨</div>
+        <div class="vysledek-label">Obrat fashion e-shop</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="6000">0</span>+</div>
+        <div class="vysledek-label">LeadŇĮ celkem</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="84">0</span>%</div>
+        <div class="vysledek-label">Kvalifikovanost leadŇĮ</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="2833">0</span>%</div>
+        <div class="vysledek-label">NejvyŇ°Ň°√≠ dosaŇĺen√Ĺ ROAS</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="1750">0</span>+</div>
+        <div class="vysledek-label">LeadŇĮ estetick√° klinika</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ SLUŇĹBY ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="sluzby">
+  <div class="container">
+    <div class="sluzby-header">
+      <div>
+        <span class="section-tag fade-up">Co um√≠m</span>
+        <h2 class="section-title fade-up">Kompletn√≠ marketingov√° exekutiva</h2>
+      </div>
+      <p class="section-desc fade-up">Nebuduji jen strategie. Sednu si k pońć√≠tańći a dńõl√°m. Jste v rukou markeŇ•√°ka, ne konzultanta.</p>
+    </div>
+    <div class="sluzby-grid">
+      <div class="sluzba-card fade-up">
+        <div class="sluzba-icon">ūüďą</div>
+        <h3 class="sluzba-title">Performance Marketing</h3>
+        <p class="sluzba-desc">Meta Ads, Google Ads, TikTok Ads. Kampanńõ s mńõŇôiteln√Ĺm ROI od prvn√≠ho dne.</p>
+        <ul class="sluzba-list">
+          <li>Meta & Google Ads spr√°va</li>
+          <li>Audience research & targeting</li>
+          <li>A/B testov√°n√≠ kreativ</li>
+          <li>Optimalizace ROAS</li>
+        </ul>
+      </div>
+      <div class="sluzba-card fade-up">
+        <div class="sluzba-icon">ūüß†</div>
+        <h3 class="sluzba-title">Marketingov√Ĺ Management</h3>
+        <p class="sluzba-desc">PŇôijdu jako v√°Ň° CMO. Vedu marketingov√Ĺ t√Ĺm, nastavuji procesy a odpov√≠d√°m za v√Ĺsledky.</p>
+        <ul class="sluzba-list">
+          <li>Veden√≠ marketingov√©ho t√Ĺmu</li>
+          <li>Nastaven√≠ procesŇĮ & KPIs</li>
+          <li>Marketingov√° strategie</li>
+          <li>Reporting & analytika</li>
+        </ul>
+      </div>
+      <div class="sluzba-card fade-up">
+        <div class="sluzba-icon">ūüéĮ</div>
+        <h3 class="sluzba-title">Lead Generation</h3>
+        <p class="sluzba-desc">Generuji kvalifikovan√© leady pro B2B i B2C. Kliniky, finance, dotace, reality.</p>
+        <ul class="sluzba-list">
+          <li>Tvorba lead gen funnelŇĮ</li>
+          <li>Landing page optimalizace</li>
+          <li>Kvalifikace & scoring leadŇĮ</li>
+          <li>Integrace s CRM</li>
+        </ul>
+      </div>
+      <div class="sluzba-card fade-up">
+        <div class="sluzba-icon">ūüöÄ</div>
+        <h3 class="sluzba-title">Brand & Obsah</h3>
+        <p class="sluzba-desc">Budov√°n√≠ znańćky, kter√° rezonuje. Od strategie pŇôes grafiku po obsah na soci√°ln√≠ch s√≠t√≠ch.</p>
+        <ul class="sluzba-list">
+          <li>Brand strategie & positioning</li>
+          <li>Tvorba obsahu & copywriting</li>
+          <li>Spr√°va soci√°ln√≠ch s√≠t√≠</li>
+          <li>Email marketing & automation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ CASE STUDIES ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="cases">
+  <div class="container">
+    <span class="section-tag fade-up">PŇô√≠padovky</span>
+    <h2 class="section-title fade-up">Re√°ln√© v√Ĺsledky.<br/>Re√°ln√≠ klienti.</h2>
+    <div class="cases-grid">
+      <div class="case-card fade-up">
+        <div class="case-sector">E-commerce ¬∑ M√≥da</div>
+        <div class="case-name">George Gina &amp; Lucy</div>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-label">Vygenerovan√Ĺ obrat</span>
+            <span class="case-metric-val green">1 129 000+ ‚ā¨</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Opakovan√© n√°kupy</span>
+            <span class="case-metric-val green">22%+</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">ROAS</span>
+            <span class="case-metric-val green">2 833 %</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <div class="case-sector">E-commerce ¬∑ N√°bytek</div>
+        <div class="case-name">ŇĹidleStoly.cz</div>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-label">Vygenerovan√Ĺ obrat</span>
+            <span class="case-metric-val green">9 000 000+ Kńć</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Pońćet objedn√°vek</span>
+            <span class="case-metric-val green">1 120+</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">ROAS</span>
+            <span class="case-metric-val green">610 %</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <div class="case-sector">Sektor dotac√≠ ¬∑ NZ√ö</div>
+        <div class="case-name">Dotańćn√≠ programy NZ√ö</div>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-label">PŇôineseno leadŇĮ</span>
+            <span class="case-metric-val green">3 000+</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Kvalifikovanost leadŇĮ</span>
+            <span class="case-metric-val green">84 %</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">ROAS</span>
+            <span class="case-metric-val green">900 %+</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <div class="case-sector">Sektor financ√≠</div>
+        <div class="case-name">ŇĹivotn√≠ pojiŇ°tńõn√≠ &amp; Leasing</div>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-label">PŇôineseno leadŇĮ</span>
+            <span class="case-metric-val green">3 000+</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Kvalifikovanost leadŇĮ</span>
+            <span class="case-metric-val green">84 %</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">ROAS</span>
+            <span class="case-metric-val green">900 %+</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <div class="case-sector">Sektor zdrav√≠ ¬∑ Estetika</div>
+        <div class="case-name">Estetick√° klinika</div>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="case-metric-label">PŇôineseno leadŇĮ</span>
+            <span class="case-metric-val green">1 750+</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">LTV klientŇĮ</span>
+            <span class="case-metric-val green">200 %+</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">ROAS</span>
+            <span class="case-metric-val green">800 %+</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--card);">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">ūüďć</div>
+        <div class="case-name" style="font-size:1.1rem;">Tady je m√≠sto pro v√°s</div>
+        <p style="color:var(--muted);font-size:.9rem;margin:.5rem 0 1.5rem;">V√°Ň° sektor mŇĮŇĺe b√Ĺt dalŇ°√≠m √ļspńõchem.</p>
+        <a href="#kontakt" class="btn-primary">PojńŹme se pobavit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ O MNńö ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="omne">
+  <div class="omne-photo">
+    <img src="https://adampetrak.cz/wp-content/uploads/2025/07/2025-07-25-13.29.06.jpg" alt="Adam Petr√°k" loading="lazy" />
+  </div>
+  <div class="omne-content">
+    <span class="section-tag fade-up">O mnńõ</span>
+    <h2 class="section-title fade-up">Nejsem konzultant.<br/>Jsem markeŇ•√°k.</h2>
+    <p class="section-desc fade-up">
+      Za 7 let jsem proŇ°el des√≠tkami firem ‚ÄĒ od mal√Ĺch e-shopŇĮ po velk√© korpor√°ty.
+      Ned√°v√°m jen rady. Sed√≠m u pońć√≠tańće, spouŇ°t√≠m kampanńõ, optimalizuji, reportuji.
+    </p>
+    <div class="omne-points fade-up">
+      <div class="omne-point">
+        <div class="omne-num">7</div>
+        <div class="omne-text">
+          <strong>Let v oboru</strong>
+          Performance marketing, brand, strategie. ProŇ°el jsem vŇ°√≠m.
+        </div>
+      </div>
+      <div class="omne-point">
+        <div class="omne-num">50+</div>
+        <div class="omne-text">
+          <strong>Firem posunuto</strong>
+          Od startupu po zaveden√© znańćky. E-commerce, finance, zdravotnictv√≠, reality.
+        </div>
+      </div>
+      <div class="omne-point">
+        <div class="omne-num">100%</div>
+        <div class="omne-text">
+          <strong>Vlastn√≠ exekutiva</strong>
+          Nedeleguju to nńõkomu jin√©mu. Dńõl√°m s√°m, s plnou zodpovńõdnost√≠ za v√Ĺsledek.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ PROńĆ J√Ā ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="proc">
+  <div class="container">
+    <span class="section-tag fade-up">Prońć spolupracovat</span>
+    <h2 class="section-title fade-up">Co dostanete,<br/>co nedostanete jinde</h2>
+    <div class="proc-grid fade-up">
+      <div class="proc-item">
+        <div class="proc-title"><span>‚ö°</span> V√Ĺsledky, ne v√Ĺmluvy</div>
+        <p class="proc-desc">Pracuji na v√Ĺsledek. Pokud kampanńõ nefunguj√≠, zjist√≠m prońć a oprav√≠m to. ŇĹ√°dn√© "trh je tńõŇĺk√Ĺ".</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-title"><span>ūüéĮ</span> Osobn√≠ pŇô√≠stup</div>
+        <p class="proc-desc">Nejste ńć√≠slo v CRM. Zn√°m v√°Ň° byznys, vaŇ°e z√°kazn√≠ky, vaŇ°i konkurenci. Komunikujeme napŇô√≠mo.</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-title"><span>ūüďä</span> Transparentn√≠ reporting</div>
+        <p class="proc-desc">KaŇĺd√Ĺ mńõs√≠c v√≠te pŇôesnńõ, co se dńõje s kaŇĺdou korunou vaŇ°eho rozpońćtu. Data bez Ň°umu.</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-title"><span>ūüĒí</span> Omezen√° kapacita</div>
+        <p class="proc-desc">NepŇôijmu v√≠c klientŇĮ, neŇĺ zvl√°dnu obslouŇĺit kvalitnńõ. VŇĺdy v√≠te, Ňĺe jste priorita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ CTA BANNER ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<div id="cta-banner">
+  <div class="container" style="text-align:center;">
+    <h2 class="cta-banner-title fade-up">V√°Ň° marketing mŇĮŇĺe fungovat l√©pe.</h2>
+    <p class="cta-banner-sub fade-up">Stańć√≠ se ozvat. Nez√°vazn√° konzultace zdarma.</p>
+    <a href="#kontakt" class="btn-white fade-up">Chci konzultaci zdarma</a>
+  </div>
+</div>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ RECENZE ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="recenze">
+  <div class="container">
+    <span class="section-tag fade-up">Reference</span>
+    <h2 class="section-title fade-up">Co Ňô√≠kaj√≠ klienti</h2>
+    <div class="recenze-grid">
+      <div class="recenze-card fade-up">
+        <div class="stars">‚ėÖ‚ėÖ‚ėÖ‚ėÖ‚ėÖ</div>
+        <span class="quote">"</span>
+        <p class="recenze-text">Adam n√°m za 3 mńõs√≠ce ztrojn√°sobil obrat z online marketingu. PŇô√≠stup byl naprosto profesion√°ln√≠ ‚ÄĒ vŇĺdy vńõdńõl, co dńõl√° a prońć.</p>
+        <div class="recenze-author">Martin K.</div>
+        <div class="recenze-role">Majitel e-shopu s n√°bytkem</div>
+      </div>
+      <div class="recenze-card fade-up">
+        <div class="stars">‚ėÖ‚ėÖ‚ėÖ‚ėÖ‚ėÖ</div>
+        <span class="quote">"</span>
+        <p class="recenze-text">Koneńćnńõ markeŇ•√°k, kter√Ĺ skuteńćnńõ rozum√≠ ńć√≠slŇĮm. ROAS kampan√≠ vyletńõl nahoru a my jsme zańćali Ň°k√°lovat zpŇĮsobem, kter√Ĺ jsme si ani nepŇôedstavovali.</p>
+        <div class="recenze-author">Petra M.</div>
+        <div class="recenze-role">CEO, estetick√° klinika</div>
+      </div>
+      <div class="recenze-card fade-up">
+        <div class="stars">‚ėÖ‚ėÖ‚ėÖ‚ėÖ‚ėÖ</div>
+        <span class="quote">"</span>
+        <p class="recenze-text">AdamŇĮv pŇô√≠stup je unik√°tn√≠ ‚ÄĒ kombinuje strategick√© myŇ°len√≠ s hands-on exekutivou. Leady z jeho kampan√≠ jsou kvalifikovan√© a konvertuj√≠.</p>
+        <div class="recenze-author">Jakub R.</div>
+        <div class="recenze-role">Ňėeditel obchodu, finanńćn√≠ sektor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ KONTAKT ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<section id="kontakt">
+  <div class="kontakt-info">
+    <span class="section-tag fade-up">Kontakt</span>
+    <h2 class="section-title fade-up">PojńŹme se potkat</h2>
+    <p class="section-desc fade-up">
+      Nez√°vazn√° konzultace trv√° 30 minut. Zjist√≠me, jestli d√°v√° spolupr√°ce smysl.
+      Bez z√°vazkŇĮ, bez bullshitu.
+    </p>
+    <div class="kontakt-detail fade-up">
+      <div class="kontakt-item">
+        <div class="kontakt-icon">‚úČ</div>
+        <div class="kontakt-item-text">
+          <div>Email</div>
+          <a href="mailto:adam@adampetrak.cz">adam@adampetrak.cz</a>
+        </div>
+      </div>
+      <div class="kontakt-item">
+        <div class="kontakt-icon">ūüďĪ</div>
+        <div class="kontakt-item-text">
+          <div>Telefon / WhatsApp</div>
+          <a href="tel:+420">NapiŇ°te pŇôes formul√°Ňô</a>
+        </div>
+      </div>
+      <div class="kontakt-item">
+        <div class="kontakt-icon">ūüďć</div>
+        <div class="kontakt-item-text">
+          <div>Lokalita</div>
+          <span style="color:var(--white);">ńĆesk√° republika &amp; remote</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kontakt-form-wrap">
+    <h3 class="form-title fade-up">NapiŇ°te mi</h3>
+    <p class="form-sub fade-up">Odpov√≠m do 24 hodin.</p>
+    <form action="https://formsubmit.co/adam@adampetrak.cz" method="POST" class="fade-up">
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="Nov√° popt√°vka z webu ‚Äď adampetrak.cz" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://adampetrak.cz/?sent=1" />
+      <input type="text" name="_honey" style="display:none" />
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="jmeno">Jm√©no a pŇô√≠jmen√≠ *</label>
+          <input type="text" id="jmeno" name="jmeno" placeholder="Jan Nov√°k" required />
+        </div>
+        <div class="form-group">
+          <label for="firma">Firma</label>
+          <input type="text" id="firma" name="firma" placeholder="VaŇ°e s.r.o." />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">E-mail *</label>
+          <input type="email" id="email" name="email" placeholder="jan@firma.cz" required />
+        </div>
+        <div class="form-group">
+          <label for="telefon">Telefon</label>
+          <input type="tel" id="telefon" name="telefon" placeholder="+420 777 123 456" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sluzba">O co m√°te z√°jem?</label>
+        <select id="sluzba" name="sluzba">
+          <option value="">Vyberte sluŇĺbu</option>
+          <option>Performance Marketing (Meta, Google Ads)</option>
+          <option>Marketingov√Ĺ Management (CMO role)</option>
+          <option>Lead Generation</option>
+          <option>Brand &amp; Obsah</option>
+          <option>Nez√°vazn√° konzultace zdarma</option>
+          <option>Jin√©</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="zprava">Zpr√°va *</label>
+        <textarea id="zprava" name="zprava" placeholder="PopiŇ°te v√°Ň° byznys a co chcete zlepŇ°it. ńĆ√≠m v√≠ce info, t√≠m l√©pe se pŇôiprav√≠m." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Odeslat popt√°vku ‚Üí</button>
+      <p class="form-note">* Povinn√© pole. VaŇ°e data jsou v bezpeńć√≠ ‚ÄĒ Ňĺ√°dn√Ĺ spam.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ‚ĒÄ‚ĒÄ‚ĒÄ FOOTER ‚ĒÄ‚ĒÄ‚ĒÄ -->
+<footer>
+  <div class="footer-logo">
+    <img src="https://adampetrak.cz/wp-content/uploads/2025/07/ap-logo-png.png" alt="Adam Petr√°k" />
+  </div>
+  <div class="footer-copy">¬© 2025 Adam Petr√°k ¬∑ Marketing, co m√° koule</div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/adampetrak/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/adampetrak_/" target="_blank">Instagram</a>
+    <a href="mailto:adam@adampetrak.cz">Email</a>
+  </div>
+</footer>
+
+<script>
+  // ‚ĒÄ‚ĒÄ‚ĒÄ NAV SCROLL ‚ĒÄ‚ĒÄ‚ĒÄ
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ‚ĒÄ‚ĒÄ‚ĒÄ MOBILE MENU ‚ĒÄ‚ĒÄ‚ĒÄ
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '100%';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(8,8,8,.97)';
+    links.style.padding = '2rem';
+    links.style.gap = '1.5rem';
+  }
+
+  // ‚ĒÄ‚ĒÄ‚ĒÄ COUNTER ANIMATION ‚ĒÄ‚ĒÄ‚ĒÄ
+  function animateCounter(el) {
+    const target = +el.dataset.target;
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target).toLocaleString('cs-CZ');
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString('cs-CZ');
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ‚ĒÄ‚ĒÄ‚ĒÄ INTERSECTION OBSERVER ‚ĒÄ‚ĒÄ‚ĒÄ
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // trigger counters inside this element
+        entry.target.querySelectorAll('.counter').forEach(c => animateCounter(c));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Also observe counter wrappers directly
+  document.querySelectorAll('.hero-stats').forEach(el => {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.counter').forEach(c => animateCounter(c));
+          heroObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    heroObserver.observe(el);
+  });
+</script>
+</body>
+</html>
