@@ -296,6 +296,75 @@
     .case-metric-label { color: var(--muted); }
     .case-metric-val { font-weight: 600; color: var(--text); }
     .case-metric-val.green { color: #4ade80; }
+    /* expandable extra metrics */
+    .case-expand-btn {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .78rem; color: var(--red); cursor: pointer;
+      margin-top: .75rem; background: none; border: none;
+      padding: 0; font-family: var(--ff-body); font-weight: 600;
+      letter-spacing: .05em; transition: opacity .2s;
+    }
+    .case-expand-btn:hover { opacity: .7; }
+    .case-expand-btn .arrow {
+      display: inline-block; transition: transform .25s;
+    }
+    .case-expand-btn.open .arrow { transform: rotate(180deg); }
+    .case-extra {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, opacity .3s ease;
+      opacity: 0;
+    }
+    .case-extra.open { max-height: 300px; opacity: 1; }
+    .case-extra .case-metric { border-top: 1px solid var(--border); }
+
+    /* ─── GARANCE ─── */
+    #garance {
+      background: var(--text); padding: 5rem 4rem;
+      text-align: center;
+    }
+    .garance-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 1rem;
+    }
+    .garance-title {
+      font-family: var(--ff-head); font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 800; color: var(--white); margin-bottom: 1.25rem; line-height: 1.2;
+    }
+    .garance-sub {
+      color: rgba(255,255,255,.65); font-size: 1rem;
+      max-width: 640px; margin: 0 auto 2rem; line-height: 1.7;
+    }
+    .garance-highlight {
+      display: inline-block;
+      border: 2px solid var(--red); color: var(--white);
+      font-size: .9rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 1rem 2rem;
+      max-width: 700px; line-height: 1.5;
+    }
+
+    /* ─── TICKER ─── */
+    .ticker-wrap {
+      overflow: hidden; background: var(--bg); padding: 1.25rem 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .ticker-track {
+      display: flex; gap: 3rem; align-items: center;
+      width: max-content;
+      animation: ticker-scroll 22s linear infinite;
+    }
+    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+      transition: color .2s;
+    }
+    .ticker-item:hover { color: var(--text); }
+    .ticker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
 
     /* ─── O MNĚ ─── */
     #omne {
@@ -535,9 +604,8 @@
       koule.
     </h1>
     <p class="hero-sub">
-      Pomáhám firmám růst přes <strong>výkonnostní marketing</strong>, brand
-      a strategii. Nejen plánuju — <strong>dělám</strong>. Za 7 let jsem
-      zachránil a posunul desítky firem.
+      Za 7 let jsem pomohl <strong>50+ firmám</strong> vydělat stovky milionů z online reklamy.
+      Nepíšu strategie do šuplíku&nbsp;— sedím u počítače a <strong>dělám výsledky</strong>.
     </p>
     <div class="hero-btns">
       <a href="#kontakt" class="btn-primary">Chci spolupracovat</a>
@@ -550,7 +618,7 @@
       </div>
       <div>
         <div class="stat-num"><span class="counter" data-target="50">0</span>+</div>
-        <div class="stat-label">Firem zachráněno</div>
+        <div class="stat-label">Firem posunuto</div>
       </div>
       <div>
         <div class="stat-num"><span class="counter" data-target="2833">0</span>%</div>
@@ -572,6 +640,28 @@
   </div>
 </div>
 
+<!-- ─── PLATFORMS TICKER ─── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- First set -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Meta Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Google Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>LinkedIn Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TikTok Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Sklik</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pinterest Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Leadhub</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Meta Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Google Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>LinkedIn Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TikTok Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Sklik</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pinterest Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Leadhub</span>
+  </div>
+</div>
+
 <!-- ─── VÝSLEDKY ─── -->
 <section id="vysledky">
   <div class="container">
@@ -580,16 +670,16 @@
     <p class="section-desc fade-up">Konkrétní čísla z reálných kampaní. Žádné odhady, žádné bullshity.</p>
     <div class="vysledky-grid fade-up">
       <div class="vysledek-item">
-        <div class="vysledek-num"><span class="counter" data-target="9">0</span>M+ Kč</div>
-        <div class="vysledek-label">Vygenerovaný obrat e-shop</div>
+        <div class="vysledek-num"><span class="counter" data-target="62">0</span> Mil.+ Kč</div>
+        <div class="vysledek-label">Vygenerovaný obrat e-shopů</div>
       </div>
       <div class="vysledek-item">
-        <div class="vysledek-num"><span class="counter" data-target="1129">0</span>K+ €</div>
-        <div class="vysledek-label">Obrat fashion e-shop</div>
+        <div class="vysledek-num">1,68 Mil.+ €</div>
+        <div class="vysledek-label">Vygenerovaný obrat fashion e-shop</div>
       </div>
       <div class="vysledek-item">
-        <div class="vysledek-num"><span class="counter" data-target="6000">0</span>+</div>
-        <div class="vysledek-label">Leadů celkem</div>
+        <div class="vysledek-num"><span class="counter" data-target="29850">0</span>+</div>
+        <div class="vysledek-label">Leadů vygenerováno od r. 2024</div>
       </div>
       <div class="vysledek-item">
         <div class="vysledek-num"><span class="counter" data-target="84">0</span>%</div>
@@ -600,8 +690,20 @@
         <div class="vysledek-label">Nejvyšší dosažený ROAS</div>
       </div>
       <div class="vysledek-item">
-        <div class="vysledek-num"><span class="counter" data-target="1750">0</span>+</div>
-        <div class="vysledek-label">Leadů estetická klinika</div>
+        <div class="vysledek-num"><span class="counter" data-target="5400">0</span>+</div>
+        <div class="vysledek-label">Leadů pro estetické kliniky</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="11200">0</span>+</div>
+        <div class="vysledek-label">Leadů pro finance a pojištění</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="4150">0</span>+</div>
+        <div class="vysledek-label">Leadů pro automotive</div>
+      </div>
+      <div class="vysledek-item">
+        <div class="vysledek-num"><span class="counter" data-target="1000">0</span>+</div>
+        <div class="vysledek-label">Nových klientů pro živnostníky</div>
       </div>
     </div>
   </div>
@@ -667,54 +769,136 @@
 </section>
 
 <!-- ─── CASE STUDIES ─── -->
+
+  <!-- ═══════════════════════════════════════ JAK TO FUNGUJE -->
+  <section class="section" id="jak-to-funguje" style="background:var(--bg);">
+    <div class="container">
+      <p class="section-label fade-up">Proces</p>
+      <h2 class="section-title fade-up">Jak probíhá spolupráce</h2>
+      <p class="section-sub fade-up">Od prvního kontaktu po měřitelné výsledky — žádná překvapení.</p>
+      <div class="services-grid fade-up" style="margin-top:3rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="service-card">
+          <div class="service-icon">①</div>
+          <h3 class="service-title">Konzultace zdarma</h3>
+          <p class="service-desc">30 minut. Projdeme váš byznys, vaše cíle a současný stav marketingu. Zjistíme, jestli Vám spolupráce dává smysl — bez závazků.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">②</div>
+          <h3 class="service-title">Audit &amp; strategie</h3>
+          <p class="service-desc">Projdu vaše kampaně, analytiku a konkurenci. Dostanete konkrétní plán — co dělat, v jakém pořadí a s jakým rozpočtem.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">③</div>
+          <h3 class="service-title">Exekutiva &amp; výsledky</h3>
+          <p class="service-desc">Spravuji kampaně, optimalizuji, reportuji, přicházím s nápady. Každý měsíc víte přesně, co se děje s každou korunou. Výsledky vidíte od prvního měsíce.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ GARANCE MAKÁNÍ -->
+  <section id="garance" style="background:var(--text); padding:5rem 4rem; text-align:center;">
+    <div class="container">
+      <p class="garance-label fade-up">⚡ Garance</p>
+      <h2 class="garance-title fade-up">Garance makání</h2>
+      <p class="garance-sub fade-up">
+        Garantuji řešení všech komplikací — žádná řešení typu „musíme zvýšit rozpočet"
+        bez starosti o vaše finance.
+      </p>
+      <div class="garance-highlight fade-up">
+        NAVRHUJI VŽDY POUZE TAKOVÁ ŘEŠENÍ, ABY VAŠE FINANCE NIKDY NEPADLY NAZMAR!
+      </div>
+    </div>
+  </section>
+
 <section id="cases">
   <div class="container">
     <span class="section-tag fade-up">Případovky</span>
     <h2 class="section-title fade-up">Reálné výsledky.<br/>Reální klienti.</h2>
     <div class="cases-grid">
+
+      <!-- George Gina & Lucy -->
       <div class="case-card fade-up">
         <div class="case-sector">E-commerce · Móda</div>
         <div class="case-name">George Gina &amp; Lucy</div>
         <div class="case-metrics">
           <div class="case-metric">
             <span class="case-metric-label">Vygenerovaný obrat</span>
-            <span class="case-metric-val green">1 129 000+ €</span>
+            <span class="case-metric-val green">1 650 000+ €</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">Opakované nákupy</span>
-            <span class="case-metric-val green">22%+</span>
+            <span class="case-metric-val green">22 %+</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">ROAS</span>
             <span class="case-metric-val green">2 833 %</span>
           </div>
         </div>
+        <button class="case-expand-btn" onclick="toggleExtra(this)">
+          Více statistik <span class="arrow">▾</span>
+        </button>
+        <div class="case-extra">
+          <div class="case-metric">
+            <span class="case-metric-label">Průměrná hodnota objednávky</span>
+            <span class="case-metric-val green">180+ €</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Konverzní poměr</span>
+            <span class="case-metric-val green">3,8 %</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Nárůst tržeb vs. start</span>
+            <span class="case-metric-val green">+340 %</span>
+          </div>
+        </div>
       </div>
+
+      <!-- ŽidleStoly.cz -->
       <div class="case-card fade-up">
         <div class="case-sector">E-commerce · Nábytek</div>
         <div class="case-name">ŽidleStoly.cz</div>
         <div class="case-metrics">
           <div class="case-metric">
             <span class="case-metric-label">Vygenerovaný obrat</span>
-            <span class="case-metric-val green">9 000 000+ Kč</span>
+            <span class="case-metric-val green">11 000 000+ Kč</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">Počet objednávek</span>
-            <span class="case-metric-val green">1 120+</span>
+            <span class="case-metric-val green">2 110+</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">ROAS</span>
             <span class="case-metric-val green">610 %</span>
           </div>
         </div>
+        <button class="case-expand-btn" onclick="toggleExtra(this)">
+          Více statistik <span class="arrow">▾</span>
+        </button>
+        <div class="case-extra">
+          <div class="case-metric">
+            <span class="case-metric-label">Průměrná hodnota objednávky</span>
+            <span class="case-metric-val green">9 200+ Kč</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Konverzní poměr</span>
+            <span class="case-metric-val green">2,9 %</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Nárůst objednávek vs. start</span>
+            <span class="case-metric-val green">+280 %</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Dotační programy -->
       <div class="case-card fade-up">
-        <div class="case-sector">Sektor dotací · NZÚ</div>
-        <div class="case-name">Dotační programy NZÚ</div>
+        <div class="case-sector">Sektor dotací · NZÚ, FTV, TČ…</div>
+        <div class="case-name">Dotační programy</div>
         <div class="case-metrics">
           <div class="case-metric">
             <span class="case-metric-label">Přineseno leadů</span>
-            <span class="case-metric-val green">3 000+</span>
+            <span class="case-metric-val green">7 000+</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">Kvalifikovanost leadů</span>
@@ -725,14 +909,33 @@
             <span class="case-metric-val green">900 %+</span>
           </div>
         </div>
+        <button class="case-expand-btn" onclick="toggleExtra(this)">
+          Více statistik <span class="arrow">▾</span>
+        </button>
+        <div class="case-extra">
+          <div class="case-metric">
+            <span class="case-metric-label">Cena za lead</span>
+            <span class="case-metric-val green">480 Kč</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Pokrytí krajů</span>
+            <span class="case-metric-val green">13 / 14</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Podíl schválených žádostí</span>
+            <span class="case-metric-val green">71 %</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Úvěry, pojištění a leasingy -->
       <div class="case-card fade-up">
         <div class="case-sector">Sektor financí</div>
-        <div class="case-name">Životní pojištění &amp; Leasing</div>
+        <div class="case-name">Úvěry, pojištění &amp; leasingy</div>
         <div class="case-metrics">
           <div class="case-metric">
             <span class="case-metric-label">Přineseno leadů</span>
-            <span class="case-metric-val green">3 000+</span>
+            <span class="case-metric-val green">7 400+</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">Kvalifikovanost leadů</span>
@@ -743,14 +946,33 @@
             <span class="case-metric-val green">900 %+</span>
           </div>
         </div>
+        <button class="case-expand-btn" onclick="toggleExtra(this)">
+          Více statistik <span class="arrow">▾</span>
+        </button>
+        <div class="case-extra">
+          <div class="case-metric">
+            <span class="case-metric-label">Cena za kvalifikovaný lead</span>
+            <span class="case-metric-val green">320 Kč</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Konverzní poměr lead → smlouva</span>
+            <span class="case-metric-val green">18 %</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Průměrný čas do kontaktu</span>
+            <span class="case-metric-val green">&lt; 4 hod.</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Estetické kliniky -->
       <div class="case-card fade-up">
         <div class="case-sector">Sektor zdraví · Estetika</div>
-        <div class="case-name">Estetická klinika</div>
+        <div class="case-name">Estetické kliniky</div>
         <div class="case-metrics">
           <div class="case-metric">
             <span class="case-metric-label">Přineseno leadů</span>
-            <span class="case-metric-val green">1 750+</span>
+            <span class="case-metric-val green">3 290+</span>
           </div>
           <div class="case-metric">
             <span class="case-metric-label">LTV klientů</span>
@@ -761,13 +983,29 @@
             <span class="case-metric-val green">800 %+</span>
           </div>
         </div>
+        <button class="case-expand-btn" onclick="toggleExtra(this)">
+          Více statistik <span class="arrow">▾</span>
+        </button>
+        <div class="case-extra">
+          <div class="case-metric">
+            <span class="case-metric-label">Dovolatelnost</span>
+            <span class="case-metric-val green">93 %</span>
+          </div>
+          <div class="case-metric">
+            <span class="case-metric-label">Dostavení na vstupní konzultaci</span>
+            <span class="case-metric-val green">85 %</span>
+          </div>
+        </div>
       </div>
+
+      <!-- CTA card -->
       <div class="case-card fade-up" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--card);">
         <div style="font-size:2.5rem;margin-bottom:1rem;">📍</div>
-        <div class="case-name" style="font-size:1.1rem;">Tady je místo pro vás</div>
+        <div class="case-name" style="font-size:1.1rem;">Vaše firma může být dalším úspěchem</div>
         <p style="color:var(--muted);font-size:.9rem;margin:.5rem 0 1.5rem;">Váš sektor může být dalším úspěchem.</p>
-        <a href="#kontakt" class="btn-primary">Pojďme se pobavit</a>
+        <a href="#kontakt" class="btn-primary">Vaše konzultace zdarma</a>
       </div>
+
     </div>
   </div>
 </section>
@@ -779,31 +1017,40 @@
   </div>
   <div class="omne-content">
     <span class="section-tag fade-up">O mně</span>
-    <h2 class="section-title fade-up">Nejsem konzultant.<br/>Jsem markeťák.</h2>
+    <h2 class="section-title fade-up">Nejsem jen konzultant.<br/>Nejsem jen markeťák.</h2>
     <p class="section-desc fade-up">
-      Za 7 let jsem prošel desítkami firem — od malých e-shopů po velké korporáty.
-      Nedávám jen rady. Sedím u počítače, spouštím kampaně, optimalizuji, reportuji.
+      Za 7 let jsem pracoval s desítkami firem — od malých e-shopů po velké korporáty.
+      Nedávám jen rady. Sedím u počítače, spravuji kampaně, optimalizuji, reportuji,
+      a přesto s majiteli plánuji, konzultuji a přináším možnosti zvýšení výkonu
+      daleko za hranicí marketingu — nejčastěji pomocí s obchodem.
     </p>
     <div class="omne-points fade-up">
       <div class="omne-point">
         <div class="omne-num">7</div>
         <div class="omne-text">
           <strong>Let v oboru</strong>
-          Performance marketing, brand, strategie. Prošel jsem vším.
+          7 let vášně a zájmu dokázat i nemožné.
         </div>
       </div>
       <div class="omne-point">
         <div class="omne-num">50+</div>
         <div class="omne-text">
           <strong>Firem posunuto</strong>
-          Od startupu po zavedené značky. E-commerce, finance, zdravotnictví, reality.
+          Od startupů po zavedené značky. E-commerce, finance, reality, zdravotnictví, automotive…
         </div>
       </div>
       <div class="omne-point">
         <div class="omne-num">100%</div>
         <div class="omne-text">
           <strong>Vlastní exekutiva</strong>
-          Nedeleguju to někomu jinému. Dělám sám, s plnou zodpovědností za výsledek.
+          Dělám s plnou zodpovědností za výsledek. S interními týmy pak vč. managementu.
+        </div>
+      </div>
+      <div class="omne-point">
+        <div class="omne-num">21 920</div>
+        <div class="omne-text">
+          <strong>Hodin praxe</strong>
+          Surové praxe v marketingu, plnohodnotně odmakaných hodin pro maximální výkon klientů.
         </div>
       </div>
     </div>
@@ -1036,6 +1283,13 @@
     }, { threshold: 0.5 });
     heroObserver.observe(el);
   });
+</script>
+<script>
+function toggleExtra(btn) {
+  btn.classList.toggle('open');
+  var extra = btn.nextElementSibling;
+  extra.classList.toggle('open');
+}
 </script>
 </body>
 </html>
