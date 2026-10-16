@@ -1181,7 +1181,9 @@
         <p class="success-title">Děkuji, vážím si Vašeho zájmu.</p>
         <p class="success-sub">Budu vás kontaktovat do 24 hodin pro Vaši konzultaci zdarma.</p>
       </div>
-      <form id="kontakt-form" class="fade-up" novalidate>
+      <form id="kontakt-form" class="fade-up" action="https://formsubmit.co/adam.petrakk@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nová poptávka z webu Adam Petrák">
+        <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" style="display:none" />
 
       <div class="form-row">
@@ -1286,129 +1288,8 @@
   </div>
 </footer>
 
-<script>
-  // ─── NAV SCROLL ───
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // ─── MOBILE MENU ───
-  function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-    links.style.flexDirection = 'column';
-    links.style.position = 'absolute';
-    links.style.top = '100%';
-    links.style.left = '0';
-    links.style.right = '0';
-    links.style.background = 'rgba(255,255,255,0.98)';
-    links.style.padding = '2rem';
-    links.style.gap = '1.5rem';
-  }
-
-  // ─── COUNTER ANIMATION ───
-  function animateCounter(el) {
-    const target = +el.dataset.target;
-    const duration = 1800;
-    const start = performance.now();
-    function step(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(ease * target).toLocaleString('cs-CZ');
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = target.toLocaleString('cs-CZ');
-    }
-    requestAnimationFrame(step);
-  }
-
-  // ─── INTERSECTION OBSERVER ───
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // trigger counters inside this element
-        entry.target.querySelectorAll('.counter').forEach(c => animateCounter(c));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Also observe counter wrappers directly
-  document.querySelectorAll('.hero-stats').forEach(el => {
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.counter').forEach(c => animateCounter(c));
-          heroObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    heroObserver.observe(el);
-  });
-</script>
-<script>
-function toggleExtra(btn) {
-  btn.classList.toggle('open');
-  var extra = btn.nextElementSibling;
-  extra.classList.toggle('open');
-}
-</script>
-<script>
-// ─── AJAX FORM SUBMIT ───
-document.getElementById('kontakt-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = this;
-  const btn  = document.getElementById('form-submit-btn');
-
-  // Honeypot – bot trap
-  if (form.querySelector('[name="_honey"]').value) return;
-
-  // GDPR souhlas
-  if (!document.getElementById('gdpr').checked) {
-    alert('Prosím, zaškrtněte souhlas se zpracováním osobních údajů.');
-    return;
-  }
-
-  btn.textContent = 'Odesílám…';
-  btn.disabled = true;
-
-  const payload = {
-    '📞 Telefon':   form.telefon.value,
-    '📧 E-mail':    form.email.value,
-    '👤 Jméno':     form.jmeno.value,
-    '🏢 Firma':     form.firma.value,
-    '🎯 Služba':    form.sluzba.value,
-    '💬 Zpráva':    form.zprava.value,
-    _subject:  'Nová poptávka – ' + form.jmeno.value + ' | ' + form.telefon.value,
-    _template: 'table',
-    _captcha:  'false'
-  };
-
-  try {
-    const res  = await fetch('https://formsubmit.co/ajax/adam.petrakk@gmail.com', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify(payload)
-    });
-    const json = await res.json();
-
-    if (json.success === 'true' || json.success === true) {
-      form.style.display = 'none';
-      const msg = document.getElementById('form-success');
-      msg.style.display = 'block';
-      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else {
-      throw new Error('formsubmit returned failure');
-    }
-  } catch (err) {
-    btn.textContent = 'Odeslat poptávku →';
-    btn.disabled = false;
-    alert('Nepodařilo se odeslat zprávu. Zkuste to prosím znovu nebo napište přímo na adam@adampetrak.cz');
-  }
-});
-</script>
+<script src="site-inline-1.js"></script>
+<script src="site-inline-2.js"></script>
+<script src="site-inline-3.js"></script>
 </body>
 </html>
